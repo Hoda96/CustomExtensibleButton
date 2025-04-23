@@ -39,9 +39,10 @@ export const WithIcon: Story = {
 export const Loading: Story = {
   args: {
     children: 'Loading Button',
-    variant: 'primary',
-    size: 'medium',
-    color: 'blue',
+    variant: "outline",
+    size: "large",
+    color: "red",
     isLoading: true,
+    icon: "🤩"
   },
 };

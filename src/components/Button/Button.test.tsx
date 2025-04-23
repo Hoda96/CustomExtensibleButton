@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { Button } from './Button';
 import { describe, it, expect } from 'vitest';
 import '@testing-library/jest-dom';
+import { Button } from './Button';
 
 describe('Button', () => {
   it('renders with default props', () => {
@@ -18,7 +18,8 @@ describe('Button', () => {
 
   it('shows loading spinner when isLoading is true', () => {
     render(<Button isLoading>Click me</Button>);
-    expect(screen.getByRole('button')).toHaveClass('opacity-50 cursor-not-allowed');
+    const button = screen.getByRole('button');
+    expect(button).toHaveAttribute('disabled');
     expect(screen.getByTestId('spinner')).toBeInTheDocument();
   });
 

@@ -11,8 +11,8 @@ export default defineConfig({
   build: {
     lib: {
       entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'MyUILib',
-      fileName: (format) => `my-ui-lib.${format}.js`,
+      name: 'CustomButtonLibrary',
+      fileName: (format) => `custom-button-library.${format}.js`,
     },
     rollupOptions: {
       external: ['react', 'react-dom'],
