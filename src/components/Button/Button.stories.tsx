@@ -16,36 +16,23 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-// Custom SVG Icon
-const CustomIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth={2}
-    stroke="currentColor"
-    className="w-5 h-5"
-  >
-    <path strokeLinecap="round" strokeLinejoin="round" d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.27 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z" />
-  </svg>
-);
-
 export const Primary: Story = {
   args: {
     children: 'Primary Button',
-    variant: "outline",
+    variant: 'primary',
     size: 'medium',
-    color: "red",
+    color: 'blue',
   },
 };
 
 export const WithIcon: Story = {
   args: {
     children: 'Icon Button',
-    variant: "outline",
-    size: "small",
-    color: "red",
-    icon: <CustomIcon />,
+    variant: 'primary',
+    size: 'medium',
+    color: 'green',
+    icon: "🙄",
+    isLoading: false
   },
 };
 
@@ -55,7 +42,6 @@ export const Loading: Story = {
     variant: 'primary',
     size: 'medium',
     color: 'blue',
-    isLoading: false,
-    icon: "😍"
+    isLoading: true,
   },
 };
