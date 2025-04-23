@@ -1,8 +1,7 @@
-import React from 'react';
 import { ButtonProps } from './Button.types';
 import classNames from 'classnames';
 
-export const Button: React.FC<ButtonProps> = ({
+ const Button = ({
   variant = 'primary',
   size = 'medium',
   color = 'blue',
@@ -11,7 +10,7 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   className,
   ...props
-}) => {
+}: ButtonProps) => {
   const baseStyles = 'inline-flex items-center justify-center font-semibold rounded focus:outline-none transition-colors';
   const variantStyles = {
     primary: `bg-${color}-500 text-white hover:bg-${color}-600`,
@@ -45,3 +44,4 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
+export {Button}
