@@ -1,53 +1,68 @@
-import React from 'react';
 import { ButtonProps } from './Button.types';
-import '../../styles/index.css';
+import classNames from 'classnames';
+
 
 const Button = ({
   variant = 'primary',
-  size = 'md',
+  size = 'medium',
+  color = 'blue',
   isLoading = false,
-  iconLeft,
-  iconRight,
+  icon,
   children,
-  onClick,
-  disabled,
+  className,
+  ...props
 }: ButtonProps) => {
-  const baseStyles = 'flex items-center justify-center gap-2 font-semibold rounded focus:outline-none transition-colors';
-  
-  const variantStyles = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300',
-    outline: 'border border-gray-300 text-gray-800 hover:bg-gray-100',
-    danger: 'bg-red-600 text-white hover:bg-red-700',
-    success: 'bg-green-600 text-white hover:bg-green-700',
+  // Define color variants explicitly to work with Tailwind's JIT compiler
+  const colorVariants = {
+    blue: {
+      primary: 'bg-blue-500 text-white hover:bg-blue-600',
+      outline: 'border border-blue-500 text-blue-500 hover:bg-blue-100',
+      ghost: 'text-blue-500 hover:bg-blue-100',
+    },
+    red: {
+      primary: 'bg-red-500 text-white hover:bg-red-600',
+      outline: 'border border-red-500 text-red-500 hover:bg-red-100',
+      ghost: 'text-red-500 hover:bg-red-100',
+    },
+    green: {
+      primary: 'bg-green-500 text-white hover:bg-green-600',
+      outline: 'border border-green-500 text-green-500 hover:bg-green-100',
+      ghost: 'text-green-500 hover:bg-green-100',
+    },
+    // Add more colors as needed
   };
+
+  const baseStyles =
+    'inline-flex items-center justify-center font-semibold rounded focus:outline-none transition-colors disabled:opacity-50 disabled:cursor-not-allowed';
 
   const sizeStyles = {
-    sm: 'px-3 py-1 text-sm',
-    md: 'px-4 py-2 text-base',
-    lg: 'px-6 py-3 text-lg',
+    small: 'px-2 py-1 text-sm',
+    medium: 'px-4 py-2 text-base',
+    large: 'px-6 py-3 text-lg',
   };
 
-  const className = [
+  const classes = classNames(
     baseStyles,
-    variantStyles[variant],
+    colorVariants[color][variant],
     sizeStyles[size],
-    disabled || isLoading ? 'opacity-50 cursor-not-allowed' : '',
-  ].join(' ');
+    className
+  );
 
   return (
-    <button 
-      className={className} 
-      onClick={onClick} 
-      disabled={disabled || isLoading}
+    <button
+      className={classes}
+      disabled={isLoading}
       aria-busy={isLoading}
+      {...props}
     >
-      {isLoading && <span className="animate-spin">⌀</span>}
-      {iconLeft && <span>{iconLeft}</span>}
+      {isLoading ? (
+        <span className="animate-spin mr-2">⏳</span>
+      ) : (
+        icon && <span className="mr-2">{icon}</span>
+      )}
       {children}
-      {iconRight && <span>{iconRight}</span>}
     </button>
   );
 };
 
-export default Button;
+export { Button };
